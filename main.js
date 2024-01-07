@@ -3,6 +3,9 @@ const url = window.location.href;
 const moviesButton = document.getElementById("moviesButton");
 const showsButton = document.getElementById("showsButton");
 
+const table = document.getElementById("table");
+
+
 let user = ""
 
 let movies = false;
@@ -11,6 +14,7 @@ let seasons = false;
 let episodes = false;
 
 
+let hashtagPos = 0;
 
 
 
@@ -133,9 +137,12 @@ async function main() {
 
 
 	for (const show of watchedShows) {
-
+		table.textContent += "| " + show.id.padEnd(40)
+			+ " | " + (String(show.rating).padEnd(3))
+			+ " | " + (show.review.padEnd(75))
+			+ " |" + "\n"
+			+ "+------------------------------------------------------------------------------------------------------------------------------+"
 		
-
 	}
 
 

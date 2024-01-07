@@ -12,7 +12,8 @@ button {
 }
 
 
-.table {
+.center {
+  text-align: center;
   width: 50%;
   margin: auto;
   background: #181825;
