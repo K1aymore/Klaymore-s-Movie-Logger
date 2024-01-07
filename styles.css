@@ -1,0 +1,20 @@
+ 
+body {
+  background-color: #1e1e2e;
+}
+
+
+button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+
+.table {
+  width: 50%;
+  margin: auto;
+  background: #181825;
+  color: #fff;
+}
