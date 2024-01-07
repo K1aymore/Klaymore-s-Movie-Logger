@@ -1,19 +1,15 @@
 
 const url = window.location.href;
-const moviesButton = document.getElementById("moviesButton");
-const showsButton = document.getElementById("showsButton");
-
-const table = document.getElementById("table");
 
 
-let user = ""
+let username = ""
 
 let movies = false;
 let shows = false;
 let seasons = false;
 let episodes = false;
 
-
+let questionPos = 0;
 let hashtagPos = 0;
 
 
@@ -41,12 +37,12 @@ function enableEpisodes() {
 
 
 function reloadOptions() {
-	let mainUrl = url.substring(0, hashtagPos) + '#';
+	let mainUrl = url.substring(0, hashtagPos);
 
-	mainUrl += "user=" + user;
+	mainUrl += '#';
 
 	if (movies) {
-		mainUrl += "+movies";
+		mainUrl += "movies";
 	}
 	if (shows) {
 		mainUrl += "+shows";
@@ -66,19 +62,23 @@ function reloadOptions() {
 
 
 async function main() {
-	let hashtagPos = url.indexOf('#');
 
-	if (hashtagPos == -1) {
-		user = "";
+	let questionPos = url.indexOf('?');
+
+	if (questionPos == -1) {
+		username = "";
 		reloadOptions();
 	}
-	else if (url.indexOf('+') == -1) {
-		user = url.substring(url.indexOf('=') + 1);
+	else if (url.indexOf('#') == -1) {
+		username = url.substring(url.indexOf('=') + 1);
 	} else {
-		user = url.substring(url.indexOf('=') + 1, url.indexOf('+'));
+		username = url.substring(url.indexOf('=') + 1, url.indexOf('#'));
 	}
+	userSelect.value += username
+	username = username.toLowerCase();
 	
-	
+
+	let hashtagPos = url.indexOf('#');
 	
 	if (url.substring(hashtagPos + 1).includes("movies")) {
 		enableMovies();
@@ -123,8 +123,8 @@ async function main() {
 	
 	
 	
-	let userPath = url.substring(0, hashtagPos).replace("/index.html", "");
-	userPath += "/Database/Users/" + user;
+	let userPath = url.substring(0, questionPos).replace("/index.html", "");
+	userPath += "/Database/Users/" + username;
 	
 	// https://stackoverflow.com/questions/49938266/how-to-return-values-from-async-functions-using-async-await-from-function
 	const watchedShows = (await (await fetch(userPath + "/watched/shows.json")).json()).shows;
@@ -134,7 +134,7 @@ async function main() {
 
 	watchedShows.sort((a, b) => a.rating - b.rating);
 
-
+	table.textContent = "+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n"
 
 	for (const show of watchedShows) {
 		table.textContent += "| " + show.id.padEnd(40)
