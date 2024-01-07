@@ -127,21 +127,50 @@ async function main() {
 	userPath += "/Database/Users/" + username;
 	
 	// https://stackoverflow.com/questions/49938266/how-to-return-values-from-async-functions-using-async-await-from-function
-	const watchedShows = (await (await fetch(userPath + "/watched/shows.json")).json()).shows;
+
+	let items = [];
+
+	if (shows || seasons) {
+		const watchedShows = (await (await fetch(userPath + "/watched/shows.json")).json()).shows;
+
+		for (let s = 0; s < watchedShows.length; s++) {
+			watchedShows[s].name = watchedShows[s].id;
+		}
+
+		if (shows) {
+			for (let s = 0; s < watchedShows.length; s++) {
+				let show = watchedShows[s];
+				items.push(show);
+			}
+		}
+		//console.log(watchedShows);
+		if (seasons) {
+			for (let s = 0; s < watchedShows.length; s++) {
+				let show = watchedShows[s];
+				for (let i = 0; i < show.seasons.length; i++) {
+					let season = show.seasons[i];
+					season.name = show.name + " Season " + (i+1);
+					items.push(season); 
+				}
+			}
+		}
+
+	}
 	
-	console.log(watchedShows);
-	
 
-	watchedShows.sort((a, b) => a.rating - b.rating);
+	items.sort((a, b) => b.rating - a.rating);
+	console.log(items);
 
-	table.textContent = "+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n"
+	table.textContent = "+----------------------------------------------------------------------------------------------------------------------------------------+\n"
 
-	for (const show of watchedShows) {
-		table.textContent += "| " + show.id.padEnd(40)
-			+ " | " + (String(show.rating).padEnd(3))
-			+ " | " + (show.review.padEnd(75))
+	for (let i = 0; i < items.length; i++) {
+		let item = items[i];
+
+		table.textContent += "| " + item.name.padEnd(50)
+			+ " | " + (String(item.rating).padEnd(3))
+			+ " | " + (item.review.padEnd(75))
 			+ " |" + "\n"
-			+ "+------------------------------------------------------------------------------------------------------------------------------+"
+			+ "+----------------------------------------------------------------------------------------------------------------------------------------+\n"
 		
 	}
 
