@@ -21,8 +21,9 @@ input {
 
 .center {
   text-align: center;
-  width: 75%;
+  width: 70%;
   margin: auto;
   background: #1e1e2e;
   color: #fff;
+  font-size: 1.15em;
 }

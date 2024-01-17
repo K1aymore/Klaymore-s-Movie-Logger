@@ -1,4 +1,5 @@
 
+
 let url = window.location.href;
 
 
@@ -9,8 +10,6 @@ let urlParams;
 
 let filters = [];
 
-let questionPos = 0;
-let hashtagPos = 0;
 
 let buttons = {
 	"movies": moviesButton,
@@ -44,17 +43,15 @@ function setupButtons() {
 	for (let i = 0; i < filters.length; i++) {
 		buttons[filters[i]].style.color = "#eba0ac";
 	}
-	
+
 	for (let buttonName in buttons) {
 		let button = buttons[buttonName];
-		button.addEventListener("click", function(e) {
+		button.addEventListener("click", function (e) {
 			toggleFilter(buttonName);
 		});
 	}
 
 }
-
-
 
 
 
@@ -73,29 +70,29 @@ async function main() {
 		console.log(urlParams)
 		reloadOptions();
 	}
-	
+
 
 	userSelect.value = user
 	user = user.toLowerCase();
-	
+
 
 	filters = urlParams.getAll("f");
-	
+
 	console.log(filters);
 
 
 
 	setupButtons();
-	
 
 
-	
+
+
 	let databasePath = window.location.href.split('?')[0].replace("/index.html", "");
 	databasePath += "Database";
-	
-	
+
+
 	let userPath = databasePath + "/Users/" + user;
-	
+
 
 	// https://stackoverflow.com/questions/49938266/how-to-return-values-from-async-functions-using-async-await-from-function
 
@@ -114,21 +111,21 @@ async function main() {
 				items.push(show);
 			}
 		}
-		
+
 		//console.log(watchedShows);
 		if (filters.includes("seasons")) {
 			for (let s = 0; s < watchedShows.length; s++) {
 				let show = watchedShows[s];
 				for (let i = 0; i < show.seasons.length; i++) {
 					let season = show.seasons[i];
-					season.name = show.name + " Season " + (i+1);
-					items.push(season); 
+					season.name = show.name + " Season " + (i + 1);
+					items.push(season);
 				}
 			}
 		}
 
 	}
-	
+
 
 	if (filters.includes("sauces")) {
 		const saucesData = (await (await fetch(userPath + "/sauces.json")).json()).sauces;
@@ -143,21 +140,29 @@ async function main() {
 	//console.log(items);
 
 
+
+
+
+
 	table.textContent = "+----------------------------------------------------------------------------------------------------------------------------------------+\n"
 
 	for (let i = 0; i < items.length; i++) {
 		let item = items[i];
 
+		let rating = String(item.rating);
+		if (item.rating == 0) {
+			rating = "";
+		}
+
 		table.textContent += "| " + item.name.padEnd(50)
-			+ " | " + (String(item.rating).padEnd(3))
+			+ " | " + (rating.padEnd(3))
 			+ " | " + (item.review.padEnd(75))
 			+ " |" + "\n"
 			+ "+----------------------------------------------------------------------------------------------------------------------------------------+\n"
-		
+
 	}
 
 
-	table.textContent += "\n\n\n\n"
 }
 
 
@@ -166,12 +171,12 @@ async function main() {
 
 function toTitleCase(str) {
 	return str.replace(
-	  /\w\S*/g,
-	  function(txt) {
-		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-	  }
+		/\w\S*/g,
+		function (txt) {
+			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+		}
 	);
-  }
+}
 
 
 
