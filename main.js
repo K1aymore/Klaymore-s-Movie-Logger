@@ -45,26 +45,13 @@ function setupButtons() {
 		buttons[filters[i]].style.color = "#eba0ac";
 	}
 	
-	
-	moviesButton.addEventListener("click", function(e) {
-		toggleFilter("movies");
-	});
-	
-	showsButton.addEventListener("click", function(e) {
-		toggleFilter("shows");
-	});
-	
-	seasonsButton.addEventListener("click", function(e) {
-		toggleFilter("seasons");
-	});
-	
-	episodesButton.addEventListener("click", function(e) {
-		toggleFilter("episodes");
-	});
+	for (let buttonName in buttons) {
+		let button = buttons[buttonName];
+		button.addEventListener("click", function(e) {
+			toggleFilter(buttonName);
+		});
+	}
 
-	saucesButton.addEventListener("click", function(e) {
-		toggleFilter("sauces");
-	});
 }
 
 
