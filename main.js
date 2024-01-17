@@ -1,167 +1,127 @@
 
-const url = window.location.href;
+let url = window.location.href;
 
 
-let username = ""
 
-let movies = false;
-let shows = false;
-let seasons = false;
-let episodes = false;
-let sauces = false;
+let user = ""
+
+let urlParams;
+
+let filters = [];
 
 let questionPos = 0;
 let hashtagPos = 0;
 
-
-
-function enableMovies() {
-	movies = true;
-	moviesButton.style.color = "#eba0ac";
+let buttons = {
+	"movies": moviesButton,
+	"shows": showsButton,
+	"seasons": seasonsButton,
+	"episodes": episodesButton,
+	"sauces": saucesButton
 }
 
-function enableShows() {
-	shows = true;
-	showsButton.style.color = "#eba0ac";
-}
-function enableSeasons() {
-	seasons = true;
-	seasonsButton.style.color = "#eba0ac";
-}
 
-function enableEpisodes() {
-	episodes = true;
-	episodesButton.style.color = "#eba0ac";
-}
-
-function enableSauces() {
-	sauces = true;
-	saucesButton.style.color = "#eba0ac";
-}
 
 
 function reloadOptions() {
-	let mainUrl = url.substring(0, questionPos);
-	mainUrl += "?user=" + username;
-
-	mainUrl += '#';
-
-	if (movies) {
-		mainUrl += "movies";
-	}
-	if (shows) {
-		mainUrl += "+shows";
-	}
-	if (seasons) {
-		mainUrl += "+seasons";
-	}
-	if (episodes) {
-		mainUrl += "+episodes";
-	}
-	if (sauces) {
-		mainUrl += "+sauces";
-	}
-
-	location.href = mainUrl;
-	location.reload();
+	window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
+	location.reload()
 }
 
-function toTitleCase(str) {
-	return str.replace(
-	  /\w\S*/g,
-	  function(txt) {
-		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-	  }
-	);
-  }
+
+function toggleFilter(filter) {
+	if (urlParams.has("f", filter)) {
+		urlParams.delete("f", filter);
+	} else {
+		urlParams.append("f", filter);
+	}
+
+	reloadOptions();
+}
+
+
+function setupButtons() {
+	for (let i = 0; i < filters.length; i++) {
+		buttons[filters[i]].style.color = "#eba0ac";
+	}
+	
+	
+	moviesButton.addEventListener("click", function(e) {
+		toggleFilter("movies");
+	});
+	
+	showsButton.addEventListener("click", function(e) {
+		toggleFilter("shows");
+	});
+	
+	seasonsButton.addEventListener("click", function(e) {
+		toggleFilter("seasons");
+	});
+	
+	episodesButton.addEventListener("click", function(e) {
+		toggleFilter("episodes");
+	});
+
+	saucesButton.addEventListener("click", function(e) {
+		toggleFilter("sauces");
+	});
+}
+
+
+
+
 
 
 
 
 async function main() {
 
-	questionPos = url.indexOf('?');
+	urlParams = new URLSearchParams(window.location.search);
 
-	if (questionPos == -1) {
-		username = "Klaymore";
+	if (urlParams.has("user")) {
+		user = urlParams.get("user");
+	}
+	else {
+		urlParams.set("user", "Klaymore");
+		console.log(urlParams)
 		reloadOptions();
 	}
-	else if (url.indexOf('#') == -1) {
-		username = url.substring(url.indexOf('=') + 1);
-	} else {
-		username = url.substring(url.indexOf('=') + 1, url.indexOf('#'));
-	}
-	userSelect.value = username
-	username = username.toLowerCase();
 	
 
-	let hashtagPos = url.indexOf('#');
+	userSelect.value = user
+	user = user.toLowerCase();
 	
-	if (url.substring(hashtagPos + 1).includes("movies")) {
-		enableMovies();
-	}
-	if (url.substring(hashtagPos + 1).includes("shows")) {
-		enableShows();
-	}
-	if (url.substring(hashtagPos + 1).includes("seasons")) {
-		enableSeasons();
-	}
-	if (url.substring(hashtagPos + 1).includes("episodes")) {
-		enableEpisodes();
-	}
-	if (url.substring(hashtagPos + 1).includes("sauces")) {
-		enableSauces();
-	}
-	
-	
-	
-	
-	moviesButton.addEventListener("click", function(e) {
-		movies = !movies;
-		reloadOptions();
-	});
-	
-	showsButton.addEventListener("click", function(e) {
-		shows = !shows;
-		reloadOptions();
-	});
-	
-	seasonsButton.addEventListener("click", function(e) {
-		seasons = !seasons;
-		reloadOptions();
-	});
-	
-	episodesButton.addEventListener("click", function(e) {
-		episodes = !episodes;
-		reloadOptions();
-	});
 
-	saucesButton.addEventListener("click", function(e) {
-		sauces = !sauces;
-		reloadOptions();
-	});
+	filters = urlParams.getAll("f");
 	
+	console.log(filters);
+
+
+
+	setupButtons();
+	
+
 
 	
 	let databasePath = url.substring(0, questionPos).replace("/index.html", "");
 	databasePath += "/Database";
 	
 	
-	let userPath = databasePath + "/Users/" + username;
+	let userPath = databasePath + "/Users/" + user;
 	
 
 	// https://stackoverflow.com/questions/49938266/how-to-return-values-from-async-functions-using-async-await-from-function
 
 	let items = [];
 
-	if (shows || seasons) {
+	if (filters.includes("shows") || filters.includes("seasons")) {
 		const watchedShows = (await (await fetch(userPath + "/watched/shows.json")).json()).shows;
 
 		for (let s = 0; s < watchedShows.length; s++) {
 			watchedShows[s].name = (await (await fetch(databasePath + "/Shows/" + watchedShows[s].id + ".json")).json()).name;
 		}
 
-		if (shows) {
+		if (filters.includes("shows")) {
 			for (let s = 0; s < watchedShows.length; s++) {
 				let show = watchedShows[s];
 				items.push(show);
@@ -169,7 +129,7 @@ async function main() {
 		}
 		
 		//console.log(watchedShows);
-		if (seasons) {
+		if (filters.includes("seasons")) {
 			for (let s = 0; s < watchedShows.length; s++) {
 				let show = watchedShows[s];
 				for (let i = 0; i < show.seasons.length; i++) {
@@ -183,14 +143,11 @@ async function main() {
 	}
 	
 
-	if (sauces) {
+	if (filters.includes("sauces")) {
 		const saucesData = (await (await fetch(userPath + "/sauces.json")).json()).sauces;
 
 		console.log(saucesData);
-
-		for (let i = 0; i < saucesData.length; i++) {
-			items.push(saucesData[i]);
-		}
+		items = items.concat(saucesData);
 
 	}
 
@@ -198,6 +155,7 @@ async function main() {
 
 	items.sort((a, b) => b.rating - a.rating);
 	console.log(items);
+
 
 	table.textContent = "+----------------------------------------------------------------------------------------------------------------------------------------+\n"
 
@@ -215,6 +173,19 @@ async function main() {
 
 	table.textContent += "\n\n\n\n"
 }
+
+
+
+
+
+function toTitleCase(str) {
+	return str.replace(
+	  /\w\S*/g,
+	  function(txt) {
+		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+	  }
+	);
+  }
 
 
 

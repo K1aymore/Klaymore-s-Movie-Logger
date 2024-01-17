@@ -11,6 +11,12 @@
         },
     
         {
+            "name": "Honey Mustard",
+            "rating": 8,
+            "review": "Like Zulu's Sauce but a bit sharper with more flavor"
+        },
+
+        {
             "name": "Worldfire",
             "rating": 5,
             "review": "Spicy and vinegary, but if you're careful has some good kick to it",
@@ -26,13 +32,8 @@
             "logs": [
                 "2024-01-12"
             ]
-        },
-
-        {
-            "name": "Honey Mustard",
-            "rating": 8,
-            "review": "Like Zulu's Sauce but a bit sharper with more flavor"
         }
+
 
     ]
     

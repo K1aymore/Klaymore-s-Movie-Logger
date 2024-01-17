@@ -7,15 +7,15 @@
 	  "review": "Great first season, pretty good second season, did not like last season",
 	  "seasons": [
 		{
-			"rating": 9,
-			"review": "Amazing"
+			"rating": 8.5,
+			"review": "Great"
 		},
 		{
-			"rating": 8,
+			"rating": 7.5,
 			"review": "Pretty good, has some cool moments and expands the world"
 		},
 		{
-			"rating": 5,
+			"rating": 4.5,
 			"review": "Boring, I don't get it"
 		}
 	  ]
