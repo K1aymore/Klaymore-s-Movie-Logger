@@ -8,6 +8,7 @@ let movies = false;
 let shows = false;
 let seasons = false;
 let episodes = false;
+let sauces = false;
 
 let questionPos = 0;
 let hashtagPos = 0;
@@ -33,11 +34,15 @@ function enableEpisodes() {
 	episodesButton.style.color = "#eba0ac";
 }
 
-
+function enableSauces() {
+	sauces = true;
+	saucesButton.style.color = "#eba0ac";
+}
 
 
 function reloadOptions() {
-	let mainUrl = url.substring(0, hashtagPos);
+	let mainUrl = url.substring(0, questionPos);
+	mainUrl += "?user=" + username;
 
 	mainUrl += '#';
 
@@ -53,20 +58,32 @@ function reloadOptions() {
 	if (episodes) {
 		mainUrl += "+episodes";
 	}
+	if (sauces) {
+		mainUrl += "+sauces";
+	}
 
 	location.href = mainUrl;
 	location.reload();
 }
+
+function toTitleCase(str) {
+	return str.replace(
+	  /\w\S*/g,
+	  function(txt) {
+		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+	  }
+	);
+  }
 
 
 
 
 async function main() {
 
-	let questionPos = url.indexOf('?');
+	questionPos = url.indexOf('?');
 
 	if (questionPos == -1) {
-		username = "";
+		username = "Klaymore";
 		reloadOptions();
 	}
 	else if (url.indexOf('#') == -1) {
@@ -74,7 +91,7 @@ async function main() {
 	} else {
 		username = url.substring(url.indexOf('=') + 1, url.indexOf('#'));
 	}
-	userSelect.value += username
+	userSelect.value = username
 	username = username.toLowerCase();
 	
 
@@ -92,7 +109,9 @@ async function main() {
 	if (url.substring(hashtagPos + 1).includes("episodes")) {
 		enableEpisodes();
 	}
-	
+	if (url.substring(hashtagPos + 1).includes("sauces")) {
+		enableSauces();
+	}
 	
 	
 	
@@ -116,16 +135,21 @@ async function main() {
 		episodes = !episodes;
 		reloadOptions();
 	});
+
+	saucesButton.addEventListener("click", function(e) {
+		sauces = !sauces;
+		reloadOptions();
+	});
+	
+
+	
+	let databasePath = url.substring(0, questionPos).replace("/index.html", "");
+	databasePath += "/Database";
 	
 	
+	let userPath = databasePath + "/Users/" + username;
 	
-	
-	
-	
-	
-	let userPath = url.substring(0, questionPos).replace("/index.html", "");
-	userPath += "/Database/Users/" + username;
-	
+
 	// https://stackoverflow.com/questions/49938266/how-to-return-values-from-async-functions-using-async-await-from-function
 
 	let items = [];
@@ -134,7 +158,7 @@ async function main() {
 		const watchedShows = (await (await fetch(userPath + "/watched/shows.json")).json()).shows;
 
 		for (let s = 0; s < watchedShows.length; s++) {
-			watchedShows[s].name = watchedShows[s].id;
+			watchedShows[s].name = (await (await fetch(databasePath + "/Shows/" + watchedShows[s].id + ".json")).json()).name;
 		}
 
 		if (shows) {
@@ -143,6 +167,7 @@ async function main() {
 				items.push(show);
 			}
 		}
+		
 		//console.log(watchedShows);
 		if (seasons) {
 			for (let s = 0; s < watchedShows.length; s++) {
@@ -157,6 +182,19 @@ async function main() {
 
 	}
 	
+
+	if (sauces) {
+		const saucesData = (await (await fetch(userPath + "/sauces.json")).json()).sauces;
+
+		console.log(saucesData);
+
+		for (let i = 0; i < saucesData.length; i++) {
+			items.push(saucesData[i]);
+		}
+
+	}
+
+
 
 	items.sort((a, b) => b.rating - a.rating);
 	console.log(items);
@@ -175,6 +213,7 @@ async function main() {
 	}
 
 
+	table.textContent += "\n\n\n\n"
 }
 
 

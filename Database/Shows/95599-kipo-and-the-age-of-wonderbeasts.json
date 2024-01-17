@@ -1,0 +1,33 @@
+
+{
+
+    "name": "Kipo and the Age of Wonderbeasts",
+    "seasons": [
+        {
+            "year": 2020,
+            "month": 1,
+            "day": 14,
+            "episodes": [
+                "Burrow Girl",
+                "Explosion Berries"
+            ]
+        },
+        {
+            "episodes": [
+                "Paw of the Jaguar",
+                "The Goat Cheese Prophecy"
+            ]
+        },
+        {
+            "year": 2020,
+            "month": 10,
+            "day": 12,
+            "episodes": [
+                "Everything Is Crabs",
+                "Code Word Milkshake"
+            ]
+        }
+
+    ]
+
+}

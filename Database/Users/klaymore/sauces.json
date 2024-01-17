@@ -1,0 +1,40 @@
+
+{
+    "sauces": [
+        {
+            "name": "Enchantress",
+            "rating": 6,
+            "review": "Not bad, but not a lot of flavor",
+            "logs": [
+                "2024-01-17"
+            ]
+        },
+    
+        {
+            "name": "Worldfire",
+            "rating": 5,
+            "review": "Spicy and vinegary, but if you're careful has some good kick to it",
+            "logs": [
+                "2024-01-17"
+            ]
+        },
+
+        {
+            "name": "Zulu's Sauce",
+            "rating": 7.5,
+            "review": "Good, like honey mustard but smoother",
+            "logs": [
+                "2024-01-12"
+            ]
+        },
+
+        {
+            "name": "Honey Mustard",
+            "rating": 8,
+            "review": "Like Zulu's Sauce but a bit sharper with more flavor"
+        }
+
+    ]
+    
+
+}
