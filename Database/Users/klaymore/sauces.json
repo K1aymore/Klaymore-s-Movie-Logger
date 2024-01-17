@@ -1,4 +1,3 @@
-
 {
     "sauces": [
         {
@@ -9,13 +8,11 @@
                 "2024-01-17"
             ]
         },
-    
         {
             "name": "Honey Mustard",
             "rating": 8,
             "review": "Like Zulu's Sauce but a bit sharper with more flavor"
         },
-
         {
             "name": "Worldfire",
             "rating": 5,
@@ -24,7 +21,6 @@
                 "2024-01-17"
             ]
         },
-
         {
             "name": "Zulu's Sauce",
             "rating": 7.5,
@@ -33,9 +29,5 @@
                 "2024-01-12"
             ]
         }
-
-
     ]
-    
-
 }

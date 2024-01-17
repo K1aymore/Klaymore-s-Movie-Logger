@@ -1,25 +1,23 @@
- 
 {
-  "shows": [
-	{
-	  "id": "95599-kipo-and-the-age-of-wonderbeasts",
-	  "rating": 7.5,
-	  "review": "Great first season, pretty good second season, did not like last season",
-	  "seasons": [
+	"shows": [
 		{
-			"rating": 8.5,
-			"review": "Great"
-		},
-		{
+			"id": "95599-kipo-and-the-age-of-wonderbeasts",
 			"rating": 7.5,
-			"review": "Pretty good, has some cool moments and expands the world"
-		},
-		{
-			"rating": 4.5,
-			"review": "Boring, I don't get it"
+			"review": "Great first season, pretty good second season, did not like last season",
+			"seasons": [
+				{
+					"rating": 8.5,
+					"review": "Great"
+				},
+				{
+					"rating": 7.5,
+					"review": "Pretty good, has some cool moments and expands the world"
+				},
+				{
+					"rating": 4.5,
+					"review": "Boring, I don't get it"
+				}
+			]
 		}
-	  ]
-	}
-  ]
-
+	]
 }

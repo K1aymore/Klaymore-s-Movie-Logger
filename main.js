@@ -90,8 +90,8 @@ async function main() {
 
 
 	
-	let databasePath = url.substring(0, questionPos).replace("/index.html", "");
-	databasePath += "/Database";
+	let databasePath = window.location.href.split('?')[0].replace("/index.html", "");
+	databasePath += "Database";
 	
 	
 	let userPath = databasePath + "/Users/" + user;
@@ -133,7 +133,6 @@ async function main() {
 	if (filters.includes("sauces")) {
 		const saucesData = (await (await fetch(userPath + "/sauces.json")).json()).sauces;
 
-		console.log(saucesData);
 		items = items.concat(saucesData);
 
 	}
@@ -141,7 +140,7 @@ async function main() {
 
 
 	items.sort((a, b) => b.rating - a.rating);
-	console.log(items);
+	//console.log(items);
 
 
 	table.textContent = "+----------------------------------------------------------------------------------------------------------------------------------------+\n"
