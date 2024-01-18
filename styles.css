@@ -16,6 +16,7 @@ input {
   background: #313244;
   border: none;
   color: #fff;
+  font-size: 1em;
 }
 
 
@@ -25,5 +26,5 @@ input {
   margin: auto;
   background: #1e1e2e;
   color: #fff;
-  font-size: 1.15em;
+  font-size: 1.05em;
 }

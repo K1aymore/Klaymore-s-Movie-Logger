@@ -98,6 +98,10 @@ async function main() {
 
 	let items = [];
 
+	if (filters.includes("movies")) {
+		const watchedMovies = (await (await fetch(userPath + "/watched/movies.json")).json())
+	}
+
 	if (filters.includes("shows") || filters.includes("seasons")) {
 		const watchedShows = (await (await fetch(userPath + "/watched/shows.json")).json()).shows;
 
@@ -126,6 +130,24 @@ async function main() {
 
 	}
 
+	if (filters.includes("episodes")) {
+		const episodes = (await (await fetch(userPath + "/watched/episodes.json")).json());
+
+		for (let showId in episodes) {
+			let show = episodes[showId];
+
+			let showName = (await (await fetch(databasePath + "/Shows/" + showId + ".json")).json()).name;
+
+			for (let i = 0; i < show.length; i++) {
+				let episode = show[i];
+				episode.name = showName + " ep " + (i + 1);
+				console.log(episode);
+				items.push(episode);
+			}
+		}
+	}
+
+
 
 	if (filters.includes("sauces")) {
 		const saucesData = (await (await fetch(userPath + "/sauces.json")).json()).sauces;
@@ -137,14 +159,14 @@ async function main() {
 
 
 	items.sort((a, b) => b.rating - a.rating);
-	//console.log(items);
+	console.log(items);
 
 
 
 
 
 
-	table.textContent = "+----------------------------------------------------------------------------------------------------------------------------------------+\n"
+	table.textContent = "+-----------------------------------------------------------------------------------------------------------------------------------------+\n"
 
 	for (let i = 0; i < items.length; i++) {
 		let item = items[i];
@@ -154,11 +176,16 @@ async function main() {
 			rating = "";
 		}
 
+		let review = "";
+		if (Object.hasOwn(item, "review")) {
+			review = item.review;
+		}
+
 		table.textContent += "| " + item.name.padEnd(50)
 			+ " | " + (rating.padEnd(3))
-			+ " | " + (item.review.padEnd(75))
+			+ " |  " + (review.padEnd(75))
 			+ " |" + "\n"
-			+ "+----------------------------------------------------------------------------------------------------------------------------------------+\n"
+			+ "+-----------------------------------------------------------------------------------------------------------------------------------------+\n"
 
 	}
 
