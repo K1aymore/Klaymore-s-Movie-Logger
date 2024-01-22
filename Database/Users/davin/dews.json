@@ -1,0 +1,31 @@
+{ 
+
+    "Baja Blast": {
+        "rating": 9
+    },
+    "Code Red": {
+        "rating": 8
+    },
+    "Diet": {
+        "rating": 6
+    },
+    "Livewire": {
+        "rating": 8
+    },
+    "Major Melon": {
+        "rating": 9
+    },
+    "Original": {
+        "rating": 8
+    },
+    "Spark": {
+        "rating": 9
+    },
+    "Voltage": {
+        "rating": 10
+    },
+    "Zero": {
+        "rating": 6
+    }
+
+}

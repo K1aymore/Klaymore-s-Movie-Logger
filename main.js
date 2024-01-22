@@ -16,7 +16,8 @@ let buttons = {
 	"shows": showsButton,
 	"seasons": seasonsButton,
 	"episodes": episodesButton,
-	"sauces": saucesButton
+	"sauces": saucesButton,
+	"dews": dewsButton
 }
 
 
@@ -88,7 +89,7 @@ async function main() {
 
 
 	let databasePath = window.location.href.split('?')[0].replace("/index.html", "");
-	databasePath += "Database";
+	databasePath += "/Database";
 
 
 	let userPath = databasePath + "/Users/" + user;
@@ -156,6 +157,16 @@ async function main() {
 
 	}
 
+
+	if (filters.includes("dews")) {
+		const dews = (await (await fetch(userPath + "/dews.json")).json());
+
+		for (let dewName in dews) {
+			let dew = dews[dewName];
+			dew.name = dewName;
+			items.push(dew);
+		}
+	}
 
 
 	items.sort((a, b) => b.rating - a.rating);
