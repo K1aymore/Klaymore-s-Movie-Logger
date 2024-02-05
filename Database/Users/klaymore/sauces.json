@@ -1,61 +1,113 @@
 {
-    "sauces": [
-        {
-            "name": "Enchantress",
-            "rating": 6,
-            "review": "Not bad, but not a lot of flavor. Same feel as Zulu's",
-            "logs": [
-                "2024-01-17"
-            ]
-        },
-        {
-            "name": "Fangbreaker",
-            "rating": 0,
-            "review": "Slightly spicy"
-        },
-        {
-            "name": "Honey Mustard",
-            "rating": 7,
-            "review": "Like Zulu's Sauce but a bit sharper with more flavor"
-        },
-        {
-            "name": "Ketchup",
-            "rating": 5,
-            "review": "Decent, but boring compared to the other sauces"
-        },
-        {
-            "name": "Mana Burn",
-            "rating": 4.5,
-            "review": "Not a lot of flavor, bit too spicy",
-            "logs": [
-                "2024-01-12"
-            ]
-        },
-        {
-            "name": "Pineapple Pepper",
-            "rating": 4,
-            "review": "Really liquid"
-        },
-        {
-            "name": "Tortle",
-            "rating": 5.5,
-            "review": "Similar to guacamole, which is good, but kinda weird on tater tots"
-        },
-        {
-            "name": "Worldfire",
-            "rating": 6.5,
-            "review": "Spicy and vinegary, but if you're careful it has some good kick to it",
-            "logs": [
-                "2024-01-17"
-            ]
-        },
-        {
-            "name": "Zulu's Sauce",
-            "rating": 7.5,
-            "review": "Good, like honey mustard but smoother",
-            "logs": [
-                "2024-01-12"
-            ]
-        }
-    ]
+    
+    "Arrakis": {
+        "rating": 6,
+        "review": "",
+        "logs": [
+            "2024-02-02"
+        ]
+    },
+    "Avocado Salsa": {
+        "rating": 3,
+        "review": "Cold, slimey, not much flavor",
+        "logs": [
+            "2024-02-02"
+        ]
+    },
+    "Bugbear": {
+        "rating": 4,
+        "logs": [
+            "2024-01-19"
+        ]
+    },
+    "Chipotle BBQ": {
+        "rating": 4.5,
+        "logs": [
+            "2024-02-02"
+        ]
+    },
+    "Enchantress": {
+        "rating": 6,
+        "review": "Not bad, but not a lot of flavor. Same feel as Zulu's",
+        "logs": [
+            "2024-01-15"
+        ]
+    },
+    "Fangbreaker": {
+        "rating": 0,
+        "review": "Slightly spicy",
+        "logs": [
+            "2024-01-26"
+        ]
+    },
+    "Honey Mustard": {
+        "rating": 7,
+        "review": "Like Zulu's Sauce but a bit sharper with more flavor",
+        "logs": [
+            "2024-01-26",
+            "2024-02-02"
+        ]
+    },
+    "Ketchup": {
+        "rating": 6,
+        "review": "Decent, but boring compared to the other sauces",
+        "logs": [
+            "2024-02-02"
+        ]
+    },
+    "Mana Burn": {
+        "rating": 4,
+        "review": "Not a lot of flavor, bit too spicy",
+        "logs": [
+            "2024-01-12",
+            "2024-02-02"
+        ]
+    },
+    "Pineapple Pepper": {
+        "rating": 5,
+        "review": "Really liquid",
+        "logs": [
+            "2024-02-02"
+        ]
+    },
+    "Ranch": {
+        "rating": 6.5,
+        "review": "Pretty good",
+        "logs": [
+            "2024-02-02"
+        ]
+    },
+    "Tartar": {
+        "rating": 6,
+        "review": "Pretty good flavor but a bit too fatty/buttery, can't eat too much",
+        "logs": [
+            "2024-02-02"
+        ]
+    },
+    "Tortle": {
+        "rating": 5.5,
+        "review": "Similar to guacamole, which is good, but kinda weird on tater tots"
+    },
+    "Vampire Control": {
+        "rating": 3.5,
+        "review": "Tastes okay but is way too buttery",
+        "logs": [
+            "2024-01-19",
+            "2024-02-02"
+        ]
+    },
+    "Worldfire": {
+        "rating": 6.5,
+        "review": "Spicy and vinegary, but if you're careful it has some good kick to it",
+        "logs": [
+            "2024-01-15"
+        ]
+    },
+    "Zulu's Sauce": {
+        "rating": 8,
+        "review": "Good, like honey mustard but smoother",
+        "logs": [
+            "2024-01-12"
+        ]
+    }
 }

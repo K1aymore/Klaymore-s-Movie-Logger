@@ -17,7 +17,8 @@ let buttons = {
 	"seasons": seasonsButton,
 	"episodes": episodesButton,
 	"sauces": saucesButton,
-	"dews": dewsButton
+	"dews": dewsButton,
+	"doritos": doritosButton
 }
 
 
@@ -151,9 +152,12 @@ async function main() {
 
 
 	if (filters.includes("sauces")) {
-		const saucesData = (await (await fetch(userPath + "/sauces.json")).json()).sauces;
-
-		items = items.concat(saucesData);
+		const sauces = (await (await fetch(userPath + "/sauces.json")).json());
+		for (let sauceName in sauces) {
+			let sauce = sauces[sauceName];
+			sauce.name = sauceName;
+			items.push(sauce);
+		}
 
 	}
 
@@ -165,6 +169,16 @@ async function main() {
 			let dew = dews[dewName];
 			dew.name = dewName;
 			items.push(dew);
+		}
+	}
+
+	if (filters.includes("doritos")) {
+		const doritos = (await (await fetch(userPath + "/doritos.json")).json());
+
+		for (let doritoName in doritos) {
+			let dorito = doritos[doritoName];
+			dorito.name = doritoName;
+			items.push(dorito);
 		}
 	}
 

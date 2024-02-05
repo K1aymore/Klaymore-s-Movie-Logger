@@ -1,0 +1,26 @@
+{
+
+    "Cool Ranch": {
+        "rating": 5.5
+    },
+    "Dinamite": {
+        "rating": 7
+    },
+    "Flamin' Hot Nacho": {
+        "rating": 7
+    },
+    "Mustard": {
+        "rating": 1
+    },
+    "Nacho Cheese": {
+        "rating": 10
+    },
+    "Spicy Nacho": {
+        "rating": 10
+    },
+    "XXTRA Flamin' Hot Nacho": {
+        "rating": 8.5
+    }
+
+
+}
