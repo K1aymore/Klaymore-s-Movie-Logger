@@ -19,12 +19,20 @@ input {
   font-size: 1em;
 }
 
-
-.center {
-  text-align: center;
-  width: 70%;
+.centerMargin {
+  width: 60%;
   margin: auto;
   background: #1e1e2e;
+}
+
+.center {
+  text-align: left;
+  margin: 3%;
   color: #fff;
   font-size: 1.05em;
+}
+
+.table {
+  text-align: left;
+  margin: 10%;
 }

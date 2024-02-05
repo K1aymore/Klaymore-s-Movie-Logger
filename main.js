@@ -142,7 +142,7 @@ async function main() {
 
 			for (let i = 0; i < show.length; i++) {
 				let episode = show[i];
-				episode.name = showName + " ep " + (i + 1);
+				episode.name = showName + " Ep." + (i + 1);
 				console.log(episode);
 				items.push(episode);
 			}
@@ -191,26 +191,23 @@ async function main() {
 
 
 
-	table.textContent = "+-----------------------------------------------------------------------------------------------------------------------------------------+\n"
-
+	
+	let currentRating = 11;
 	for (let i = 0; i < items.length; i++) {
 		let item = items[i];
 
-		let rating = String(item.rating);
-		if (item.rating == 0) {
-			rating = "";
+		if (item.rating != currentRating) {
+			currentRating = item.rating;
+			table.textContent += "\n\n" + String(item.rating) + "\n-------\n";
 		}
 
 		let review = "";
-		if (Object.hasOwn(item, "review")) {
-			review = item.review;
+		if (Object.hasOwn(item, "review") && item.review != "") {
+			review = ": " + item.review;
 		}
 
-		table.textContent += "| " + item.name.padEnd(50)
-			+ " | " + (rating.padEnd(3))
-			+ " |  " + (review.padEnd(75))
-			+ " |" + "\n"
-			+ "+-----------------------------------------------------------------------------------------------------------------------------------------+\n"
+		table.textContent += "" + item.name
+			+ review + "\n";
 
 	}
 
