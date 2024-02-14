@@ -190,24 +190,26 @@ async function main() {
 
 
 
+	table.textContent = "+-----------------------------------------------------------------------------------------------------------------------------------------+\n"
 
-	
-	let currentRating = 11;
 	for (let i = 0; i < items.length; i++) {
 		let item = items[i];
 
-		if (item.rating != currentRating) {
-			currentRating = item.rating;
-			table.textContent += "\n\n" + String(item.rating) + "\n-------\n";
+		let rating = String(item.rating);
+		if (item.rating == 0) {
+			rating = "";
 		}
 
 		let review = "";
-		if (Object.hasOwn(item, "review") && item.review != "") {
-			review = ": " + item.review;
+		if (Object.hasOwn(item, "review")) {
+			review = item.review;
 		}
 
-		table.textContent += "" + item.name
-			+ review + "\n";
+		table.textContent += "| " + item.name.padEnd(50)
+			+ " | " + (rating.padEnd(3))
+			+ " |  " + (review.padEnd(75))
+			+ " |" + "\n"
+			+ "+-----------------------------------------------------------------------------------------------------------------------------------------+\n"
 
 	}
 
