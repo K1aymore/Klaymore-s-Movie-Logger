@@ -1,23 +1,31 @@
 {
-    
     "Arrakis": {
         "rating": 6,
         "review": "",
         "logs": [
-            "2024-02-02"
+            "2024-02-02",
+            "2024-02-09"
         ]
     },
     "Avocado Salsa": {
         "rating": 3,
         "review": "Cold, slimey, not much flavor",
         "logs": [
-            "2024-02-02"
+            "2024-02-02",
+            "2024-02-09"
+        ]
+    },
+    "Blue Cheese": {
+        "rating": 5,
+        "logs": [
+            "2024-02-09"
         ]
     },
     "Bugbear": {
         "rating": 4,
         "logs": [
-            "2024-01-19"
+            "2024-01-19",
+            "2024-02-09"
         ]
     },
     "Chipotle BBQ": {
@@ -27,17 +35,25 @@
         ]
     },
     "Enchantress": {
-        "rating": 6,
+        "rating": 3,
         "review": "Not bad, but not a lot of flavor. Same feel as Zulu's",
         "logs": [
-            "2024-01-15"
+            "2024-01-15",
+            "2024-02-09"
+        ]
+    },
+    "Eolian Mustarda": {
+        "rating": 4.5,
+        "logs": [
+            "2024-02-09"
         ]
     },
     "Fangbreaker": {
-        "rating": 0,
+        "rating": 6.5,
         "review": "Slightly spicy",
         "logs": [
-            "2024-01-26"
+            "2024-01-26",
+            "2024-02-09"
         ]
     },
     "Honey Mustard": {
@@ -45,7 +61,15 @@
         "review": "Like Zulu's Sauce but a bit sharper with more flavor",
         "logs": [
             "2024-01-26",
-            "2024-02-02"
+            "2024-02-02",
+            "2024-02-09"
+        ]
+    },
+    "Hot Honey": {
+        "rating": 4,
+        "review": "Literal honey",
+        "logs": [
+            "2024-02-09"
         ]
     },
     "Ketchup": {
@@ -60,7 +84,15 @@
         "review": "Not a lot of flavor, bit too spicy",
         "logs": [
             "2024-01-12",
-            "2024-02-02"
+            "2024-02-02",
+            "2024-02-09"
+        ]
+    },
+    "Mindflayer": {
+        "rating": 4.5,
+        "review": "Literal blueberry",
+        "logs": [
+            "2024-02-09"
         ]
     },
     "Pineapple Pepper": {
@@ -77,37 +109,50 @@
             "2024-02-02"
         ]
     },
+    "Soy Ginger": {
+        "rating": 5.5,
+        "logs": [
+            "2024-02-09"
+        ]
+    },
     "Tartar": {
         "rating": 6,
         "review": "Pretty good flavor but a bit too fatty/buttery, can't eat too much",
         "logs": [
-            "2024-02-02"
+            "2024-02-02",
+            "2024-02-09"
         ]
     },
     "Tortle": {
         "rating": 5.5,
-        "review": "Similar to guacamole, which is good, but kinda weird on tater tots"
+        "review": "Similar to guacamole, which is good, but kinda weird on tater tots",
+        "logs": [
+            "2024-02-09"
+        ]
     },
     "Vampire Control": {
         "rating": 3.5,
         "review": "Tastes okay but is way too buttery",
         "logs": [
             "2024-01-19",
-            "2024-02-02"
+            "2024-02-02",
+            "2024-02-09"
         ]
     },
     "Worldfire": {
-        "rating": 6.5,
+        "rating": 3,
         "review": "Spicy and vinegary, but if you're careful it has some good kick to it",
         "logs": [
-            "2024-01-15"
+            "2024-01-15",
+            "2024-02-09"
         ]
     },
     "Zulu's Sauce": {
-        "rating": 8,
+        "rating": 8.5,
         "review": "Good, like honey mustard but smoother",
         "logs": [
-            "2024-01-12"
+            "2024-01-12",
+            "2024-02-09"
         ]
     }
 }

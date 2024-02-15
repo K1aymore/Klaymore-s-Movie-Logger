@@ -100,31 +100,22 @@ async function main() {
 
 	let items = [];
 
-	if (filters.includes("movies")) {
-		const watchedMovies = (await (await fetch(userPath + "/watched/movies.json")).json())
-	}
-
 	if (filters.includes("shows") || filters.includes("seasons")) {
-		const watchedShows = (await (await fetch(userPath + "/watched/shows.json")).json()).shows;
+		const shows = (await (await fetch(userPath + "/shows.json")).json());
 
-		for (let s = 0; s < watchedShows.length; s++) {
-			watchedShows[s].name = (await (await fetch(databasePath + "/Shows/" + watchedShows[s].id + ".json")).json()).name;
-		}
-
-		if (filters.includes("shows")) {
-			for (let s = 0; s < watchedShows.length; s++) {
-				let show = watchedShows[s];
+		for (let showID in shows) {
+			let show = shows[showID];
+			show.name = (await (await fetch(databasePath + "/SHOW/" + showID + ".json")).json()).name;
+		
+		
+			if (filters.includes("shows")) {
 				items.push(show);
 			}
-		}
-
-		//console.log(watchedShows);
-		if (filters.includes("seasons")) {
-			for (let s = 0; s < watchedShows.length; s++) {
-				let show = watchedShows[s];
-				for (let i = 0; i < show.seasons.length; i++) {
-					let season = show.seasons[i];
-					season.name = show.name + " Season " + (i + 1);
+	
+			if (filters.includes("seasons")) {
+				for (let seasonNum in show.seasons) {
+					let season = show.seasons[seasonNum];
+					season.name = show.name + " S" + seasonNum;
 					items.push(season);
 				}
 			}
@@ -133,19 +124,31 @@ async function main() {
 	}
 
 	if (filters.includes("episodes")) {
-		const episodes = (await (await fetch(userPath + "/watched/episodes.json")).json());
+		const episodes = (await (await fetch(userPath + "/episodes.json")).json());
 
-		for (let showId in episodes) {
-			let show = episodes[showId];
+		for (let showID in episodes) {
+			let show = episodes[showID];
 
-			let showName = (await (await fetch(databasePath + "/Shows/" + showId + ".json")).json()).name;
+			let showName = (await (await fetch(databasePath + "/SHOW/" + showID + ".json")).json()).name;
 
-			for (let i = 0; i < show.length; i++) {
-				let episode = show[i];
-				episode.name = showName + " Ep." + (i + 1);
-				console.log(episode);
-				items.push(episode);
+			for (let s = 0; s < show.length; s++) {
+				for (let i = 0; i < show[s].length; i++) {
+					let episode = show[s][i];
+					episode.name = showName + " S" + (s+1) + "E" + (i + 1);
+					console.log(episode);
+					items.push(episode);
+				}
 			}
+
+		}
+	}
+
+	if (filters.includes("movies")) {
+		const movies = (await (await fetch(userPath + "/movies.json")).json())
+		for (let movieID in movies) {
+			let movie = movies[movieID];
+			movie.name = (await (await fetch(databasePath + "/MOVIE/" + movieID + ".json")).json()).name;
+			items.push(sauce);
 		}
 	}
 
@@ -158,13 +161,11 @@ async function main() {
 			sauce.name = sauceName;
 			items.push(sauce);
 		}
-
 	}
 
 
 	if (filters.includes("dews")) {
 		const dews = (await (await fetch(userPath + "/dews.json")).json());
-
 		for (let dewName in dews) {
 			let dew = dews[dewName];
 			dew.name = dewName;
@@ -174,7 +175,6 @@ async function main() {
 
 	if (filters.includes("doritos")) {
 		const doritos = (await (await fetch(userPath + "/doritos.json")).json());
-
 		for (let doritoName in doritos) {
 			let dorito = doritos[doritoName];
 			dorito.name = doritoName;
