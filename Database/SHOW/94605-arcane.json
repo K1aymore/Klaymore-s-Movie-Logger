@@ -4,11 +4,19 @@
     "name": "Arcane",
     "seasons": [
         {
-            "release-date": "",
+            "release-date": "2021-11-06",
             "episodes": [
+                "Welcome to the Playground",
+                "Some Mysteries Are Better Left Unsolved",
+                "The Base Violence Necessary for Change",
+                "Happy Progress Day!",
+                "Everybody Wants to Be My Enemy",
+                "When These Walls Come Tumbling Down",
+                "The Boy Savior",
+                "Oil and Water",
+                "The Monster You Created"
             ]
         }
-
     ]
 
 }

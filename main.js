@@ -69,7 +69,7 @@ async function main() {
 	}
 	else {
 		urlParams.set("user", "Klaymore");
-		console.log(urlParams)
+		console.log(urlParams);
 		reloadOptions();
 	}
 

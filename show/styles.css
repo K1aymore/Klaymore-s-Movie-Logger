@@ -1,0 +1,43 @@
+ 
+body {
+  background-color: #181825;
+  color: #fff;
+  font-family: monospace;
+  font-size: 1.3em;
+}
+
+
+button {
+  background: none;
+  border: none;
+  font-weight: bold;
+  color: #fff;
+}
+
+input {
+  background: #313244;
+  border: none;
+  color: #fff;
+  font-family: monospace;
+  font-size: 1.05em;
+}
+
+.centerMargin {
+  width: 60%;
+  margin: auto;
+  background: #1e1e2e;
+}
+
+.center {
+  text-align: left;
+  margin: 3%;
+  color: #fff;
+}
+
+.table {
+  text-align: left;
+}
+
+.colored {
+  color: #eba0ac;
+}
