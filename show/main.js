@@ -80,26 +80,37 @@ async function main() {
 		for (let e = 0; e < show[s].length; e++) {
 			let episode = show[s][e];
 			
-			table.innerHTML += "Ep. " + (e+1).toString().padStart(2) + " ";
+			table.innerHTML += "Ep." + (e+1).toString().padStart(3) + " ";
 
-			let bar = "";
-			for (let r = 0; r < episode.rating; r += 0.5) {
-				bar += "####";
+			let bar = document.createElement("span");
+			bar.id = "S"+ s + "E" + e;
+
+			// draw bar
+			for (let r = 0; r < 10; r += 0.5) {
+				let section = document.createElement("span");
+				
+				if (r < episode.rating) {
+					section.innerHTML = "####";
+					section.className = "sectionFull";
+				}
+				else if (r == episode.rating) {
+					section.innerHTML = episode.rating.toString().padStart(2).padEnd(3);
+					section.className = "sectionEmpty";
+				}
+				else {
+					section.innerHTML = "    ";
+					section.className = "sectionEmpty";
+				}
+
+
+				bar.appendChild(section);
 			}
-			let barElement = document.createElement("span");
-			barElement.className = "colored";
-			barElement.innerHTML = bar;
 
-			table.appendChild(barElement);
+			table.appendChild(bar)
 
-			table.innerHTML += " " + episode.rating.toString().padEnd(3);
-			
-			for (let r = episode.rating; r < 10; r += 0.5) {
-				table.innerHTML += "    ";
-			}
 
 			if (typeof showData !== "undefined") {
-				table.innerHTML += " " + showData.seasons[s].episodes[e];
+				table.innerHTML += "  " + showData.seasons[s].episodes[e];
 			}
 			
 			
