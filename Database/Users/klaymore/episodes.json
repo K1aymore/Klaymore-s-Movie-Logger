@@ -2,8 +2,10 @@
     "95599-kipo-and-the-age-of-wonderbeasts": [
         [
             {
-                "rating": 5,
-                "logs": []
+                "rating": 4.5,
+                "logs": [
+                    "2024-02-13"
+                ]
             }
         ]
     ],
@@ -17,35 +19,53 @@
             },
             {
                 "rating": 8,
-                "logs": []
+                "logs": [
+                    "2024-01-03"
+                ]
             },
             {
                 "rating": 9,
-                "logs": []
+                "logs": [
+                    "2024-01-05"
+                ]
             },
             {
-                "rating": 6,
+                "rating": 5,
                 "review": "Kinda slow, but for plot reasons",
-                "logs": []
+                "logs": [
+                    "2024-01-08"
+                ]
             },
             {
                 "rating": 7,
-                "logs": []
+                "logs": [
+                    "2024-01-11"
+                ]
             },
             {
                 "rating": 7.5,
-                "logs": []
+                "logs": [
+                    "2024-01-12"
+                ]
             },
             {
                 "rating": 8,
                 "review": "Raised stakes",
-                "logs": []
+                "logs": [
+                    "2024-01-14"
+                ]
             },
             {
-                "rating": 8.5
+                "rating": 8,
+                "logs": [
+                    "2024-01-18"
+                ]
             },
             {
-                "rating": 9
+                "rating": 9,
+                "logs": [
+                    "2024-01-21"
+                ]
             }
         ]
     ]

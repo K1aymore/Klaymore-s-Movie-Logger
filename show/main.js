@@ -47,7 +47,9 @@ async function main() {
 
 
 
-	let databasePath = window.location.href.split('?')[0].replace("/show/index.html", "");
+	let databasePath = window.location.href.split('?')[0];
+	databasePath = databasePath.replace("/show/", "");
+	databasePath = databasePath.replace("index.html", "");
 	databasePath += "/Database";
 
 
@@ -61,11 +63,12 @@ async function main() {
 	const episodes = (await (await fetch(userPath + "/episodes.json")).json());
 	let show = episodes[showID];
 
-	let showData = (await (await fetch(databasePath + "/SHOW/" + showID + ".json")).json());
-	let showName = showData.name;
+	let showData = (await fetch(databasePath + "/SHOW/" + showID + ".json"));
 
-
-	showLabel.innerHTML += showName;
+	if (typeof showData !== "undefined") {
+		showData = (await showData.json());
+		showLabel.innerHTML += showData.name;
+	}
 
 	// each season
 	for (let s = 0; s < show.length; s++) {
@@ -81,13 +84,12 @@ async function main() {
 
 			let bar = "";
 			for (let r = 0; r < episode.rating; r += 0.5) {
-				bar += "====";
+				bar += "####";
 			}
 			let barElement = document.createElement("span");
 			barElement.className = "colored";
 			barElement.innerHTML = bar;
 
-			console.log(barElement)
 			table.appendChild(barElement);
 
 			table.innerHTML += " " + episode.rating.toString().padEnd(3);
@@ -96,7 +98,10 @@ async function main() {
 				table.innerHTML += "    ";
 			}
 
-			table.innerHTML += " " + showData.seasons[s].episodes[e];
+			if (typeof showData !== "undefined") {
+				table.innerHTML += " " + showData.seasons[s].episodes[e];
+			}
+			
 			
 			table.innerHTML += "\n";	
 		}
